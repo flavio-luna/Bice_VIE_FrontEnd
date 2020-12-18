@@ -1,0 +1,27 @@
+.indicador-card{
+    margin-bottom: 20px;
+}
+
+.indicador-header{
+    color: rgb(39 93 146);
+    font-weight: 500;
+}
+
+.indicador-valor{
+    background-color: #CBD9E7;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.indicador-footer{
+    background-color:#dce2e9;
+}
+
+.indicador-footer button{
+    margin-right: 10px;
+}
+
+.hide{
+    display: none;
+}

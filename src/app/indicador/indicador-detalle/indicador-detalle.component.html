@@ -1,0 +1,31 @@
+<div class="card indicador-card"> 
+    <div class="card-header text-center indicador-header">
+        {{indicador.nombre}}
+    </div>
+    <ul class="list-group list-group-flush">
+                                            
+        <li class="list-group-item indicador-valor" >
+            {{mostrarPrefijo(indicador.unidad_Medida)}} 
+            {{numeroFormateadoCl(indicador.valor)}} 
+        </li>
+    </ul>
+    <div class="card-footer text-center indicador-footer">                                            
+            <button type="button" class="btn btn-primary btn-sm" 
+                    (click)='mostrarFecha(indicador)'>
+                    <i class="fa fa-search"></i>
+                Fecha
+            </button>
+            <button type="button" class="btn btn-primary btn-sm"
+                (click)='mostrarAnno(indicador)'>
+                <i class="fa fa-line-chart"></i>
+                Año
+            </button>
+    </div>     
+    <div class="card-body" [ngClass]="indicador.mostrarFecha ? '' : 'hide'">
+        <app-indicador-buscar-por-fecha [indicador]='indicador'></app-indicador-buscar-por-fecha>
+    </div>
+    <div class="card-body" [ngClass]="indicador.mostrarAnno ? '' : 'hide'">
+        <app-indicador-grafico-por-anno [indicador]='indicador'></app-indicador-grafico-por-anno>
+    </div>
+</div>
+

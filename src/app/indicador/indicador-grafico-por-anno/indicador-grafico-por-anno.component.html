@@ -1,0 +1,64 @@
+
+<div class="form-group">
+    <select class="form-control" [(ngModel)] = "annoSel"  (change)='onAnnoChange()' id="annoSelect">
+      <option>Seleccione año...</option>
+      <option>2020</option>
+      <option>2019</option>
+      <option>2018</option>
+      <option>2017</option>
+      <option>2016</option>
+    </select>
+  </div>
+<div class="text-right">
+    <div class="btn-group btn-group-toggle " ngbRadioGroup [(ngModel)]="radioVerComo"
+        name="radioBasic" >
+        <label ngbButtonLabel class="btn-info btn-sm">
+            <input ngbButton type="radio" value="grafico" 
+            (click)='mostrarGraficoClick()'> 
+            <i class="fa fa-line-chart"></i>
+            Gráfico
+        </label>
+        <label ngbButtonLabel class="btn-info btn-sm">
+            <input ngbButton type="radio" value="tabla"
+                (click)='mostrarTablaClick()'>
+                <i class="fa fa-table"></i>
+                Tabla
+        </label>
+    </div>
+</div>
+
+<br/>
+<div *ngIf='datosCargadosPrimeraVez'>
+    <div class="tabla-anual-contenedor" *ngIf='mostrarTabla'>
+        <table class="table table-striped tabla-anual">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">Fecha</th>
+                    <th scope="col" class="text-center">{{indicador.unidad_Medida}}</th>
+                    <th scope="col" class="text-center">Variación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let serie of indicador.valores; let i=index'>
+                    <td class="text-center">{{serie.fecha | date:'dd-MM'}}</td>
+                    <td class="text-right">{{serie.valor | number:'.5-5':'es-CL'}}</td>
+                    <td >{{variacionHtml(serie.valor, indicador.valores[i+1]?.valor)}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="grafico-contendor" *ngIf='mostrarGrafico'>
+        <p class="grafico-titulo">Valores de {{indicador.nombre}} del año {{annoSel}}</p>
+        <div class="grafico">
+    
+            <google-chart #chart
+                [type]="configGrafico.tipo"
+                [data]="configGrafico.data"
+                [columns]="configGrafico.nombreColumnas"
+                [options]="configGrafico.opciones"
+                [width]="configGrafico.ancho"
+                [height]="configGrafico.altura">
+                </google-chart>
+        </div>
+    </div>
+</div>

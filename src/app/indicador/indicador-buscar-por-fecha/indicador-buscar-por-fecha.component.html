@@ -1,0 +1,17 @@
+<form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <input class="form-control" placeholder="dd/MM/yyyy" (dateSelect)="onSeleccionFecha()"
+               name="dp" [(ngModel)]="fechaSeleccionadaTxt" ngbDatepicker #d="ngbDatepicker"
+               [maxDate]="fechaMax"
+               >
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary fa fa-calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+<div class="text-right indicador-valor">
+    {{valor}}
+</div>
